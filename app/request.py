@@ -1,3 +1,4 @@
+from app.models import headlines
 from app import app
 import urllib.request, json
 from .models import news_source
@@ -7,14 +8,17 @@ News_Source = news_source.News_Source
 # getting api key
 api_key = app.config['NEWS_API_KEY']
 
+# getting sources base url
+source_base_url = app.config['NEWS_API_SOURCES_URL']
+
 # getting the news top headline base url
-base_url = app.config['NEWS_API_SOURCES_URL']
+headlines_base_url = app.config['TOP_HEADLINES_API_URL']
 
 def get_news_source():
   '''
   Function that gets the json response to our url request
   '''
-  get_news_source_url = base_url.format(api_key)
+  get_news_source_url = source_base_url.format(api_key)
   with urllib.request.urlopen(get_news_source_url) as url:
     get_news_source_data = url.read()
     get_news_source_response = json.loads(get_news_source_data)
@@ -42,3 +46,23 @@ def process_sources(source_list):
       news_source_object = News_Source(id, name, description,url)
       news_source_result.append(news_source_object)
   return news_source_result
+
+def get_top_headlines():
+  '''
+  function that gets the response to the category json
+  '''
+
+  get_headlines_url = headlines_base_url.formart(api_key)
+  with urllib.request.urlopen(get_headlines_url) as url:
+    get_headlines_data = url.read()
+    get_headlines_response = json.loads(get_headlines_data)
+
+    get_headlines_results = None
+
+    if get_headlines_response['articles']:
+      get_headlines_list = get_headlines_response['articles']
+      get_headlines_results = process_articles_results(get_headlines_list)
+
+  return get_headlines_results
+
+  
