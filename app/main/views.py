@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url
 from . import main
-from ..request import get_news_source, get_top_headlines, news_article_source, get_category
-# from ..models import News_Source
+from ..request import get_news_source, get_top_headlines, news_article_source, get_news_categories
+
 
 # Views
 @main.route('/')
@@ -22,3 +22,14 @@ def news_article(id):
   '''
   articles = news_article_source(id)
   return render_template('new.html',articles =articles, id = id)
+
+@main.route('/categories/<category_name>')
+def cat(category_name):
+  '''
+  view function for categories content
+  '''
+  category = get_news_categories(category_name)
+  title = f'{category_name}'
+  cat_name = category_name
+
+  return render_template('category.html', title=title, category = category, cat_name = cat_name)
