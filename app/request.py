@@ -38,8 +38,8 @@ def get_news_source():
     news_source_results = None
 
     if get_news_source_response['sources']:
-      news_source_list = get_news_source_response['sources']
-      news_source_results = process_sources(news_source_list)
+      news_source_results_list = get_news_source_response['sources']
+      news_source_results = process_sources(news_source_results_list)
 
   return news_source_results
 
@@ -60,7 +60,18 @@ def process_sources(source_list):
   return news_source_result
 
 def news_article_source(id):
-  article_source_url = 
+  article_source_url = articles_base_url.format(id, api_key)
+
+  with urllib.request.urlopen(article_source_url) as url:
+    article_source_data = url.read()
+    article_source_response = json.loads(article_source_data)
+
+    article_source_results = None
+
+    if article_source_response['articles']:
+      article_source_list = article_source_response['articles']
+      article_source_results = process_articles_results(article_source_list)
+  return article_source_results
 
 def get_top_headlines():
   '''
@@ -95,3 +106,6 @@ def process_articles_results(news):
 
     if image:
       article_objects = Article(author, title, description, url, image, publishedDate)
+      article_source_results.append(article_objects)
+
+  return article_source_results
