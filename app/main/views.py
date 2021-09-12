@@ -1,4 +1,4 @@
-from flask import render_template,request,redirect,url
+from flask import render_template,request,redirect,url_for
 from . import main
 from ..request import get_news_source, get_top_headlines, news_article_source, get_news_categories
 
@@ -11,9 +11,9 @@ def index():
   '''
 
   newsSource = get_news_source()
-  topHeadlines = get_top_headlines
+  topHeadlines = get_top_headlines()
   # title = 'Home - Welcome to the News website'
-  return render_template('index.html',title=title, sources = newsSource, topHeadlines=topHeadlines)
+  return render_template('index.html', sources = newsSource, topHeadlines=topHeadlines)
 
 @main.route('/article/<id>')
 def news_article(id):
@@ -21,7 +21,7 @@ def news_article(id):
   news view page function that returns the movie details page and its data
   '''
   articles = news_article_source(id)
-  return render_template('new.html',articles =articles, id = id)
+  return render_template('articles.html',articles =articles, id = id)
 
 @main.route('/categories/<category_name>')
 def cat(category_name):

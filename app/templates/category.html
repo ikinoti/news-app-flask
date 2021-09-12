@@ -1,15 +1,15 @@
-{% extends 'base.html %} {% block content %}
+{% extends 'base.html' %} {% block content %}
 <body>
   <h1>{{cat_name}} News</h1>
   <div class="container">
     <div class="row row-cols-1 row-cols-md-3 g-4">
-      {% for category on category %}
       <div class="col">
+        {% for category in category %}
         <div class="card">
           <img src="{{category.image}}" class="card-img-top" />
           <div class="card-body">
             <h5 class="card-title">{{category.author}}</h5>
-            <p class="card-text">{{category.description}}}}</p>
+            <p class="card-text">{{category.description}}</p>
           </div>
           <div class="card-footer">
             <small class="text-muted"
@@ -17,8 +17,8 @@
             >
           </div>
         </div>
+        {% endfor %}
       </div>
-      {% endfor %}
     </div>
   </div>
   {% endblock %}

@@ -16,7 +16,7 @@ categories_base_url = None
 # getting articles base url 
 articles_base_url = None
 
-def confure_request(app):
+def configure_request(app):
   global api_key,source_base_url,headlines_base_url, categories_base_url, articles_base_url
   api_key = app.config['NEWS_API_KEY']
   source_base_url = app.config['NEWS_API_SOURCES_URL']
@@ -76,7 +76,7 @@ def get_top_headlines():
   function that gets the response to the category json
   '''
 
-  get_headlines_url = headlines_base_url.formart(api_key)
+  get_headlines_url = headlines_base_url.format(api_key)
   with urllib.request.urlopen(get_headlines_url) as url:
     get_headlines_data = url.read()
     get_headlines_response = json.loads(get_headlines_data)

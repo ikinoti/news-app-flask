@@ -1,8 +1,8 @@
 import unittest
-from models import headlines
+from app.models import Top_Headlines
 
 
-Top_Headlines = headlines.Top_Headlines
+
 
 class HeadlinesTest(unittest.TestCase):
   '''
@@ -19,7 +19,5 @@ def test_instance(self):
   '''
   Test to check creation of new headline instance
   '''
-  self.assertTrue(isinstance(self.new_headlines,headlines))
+  self.assertTrue(isinstance(self.new_headlines,Top_Headlines))
 
-if __name__ == "__main__":
-  unittest.main()
