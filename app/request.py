@@ -1,5 +1,3 @@
-
-
 import urllib.request, json
 from .models import News_Source, Top_Headlines, Article, News_Category
 
@@ -109,3 +107,20 @@ def process_articles_results(news):
       article_source_results.append(article_objects)
 
   return article_source_results
+
+def get_news_categories(category_name):
+  '''
+  function that gets the response to the category json
+  '''
+  get_cat_url = categories_base_url.format(category_name, api_key)
+  with urllib.request.urlopen(get_cat_url) as url:
+    get_cat_data = url.read()
+    get_cat_response = json.loads(get_cat_data)
+
+    get_cat_results = None
+
+    if get_cat_response['articles']:
+      get_cat_list = get_cat_response['articles']
+      get_cat_results = process_articles_results(get_cat_list)
+
+  return get_cat_results
