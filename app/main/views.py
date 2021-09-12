@@ -12,7 +12,7 @@ def index():
 
   newsSource = get_news_source()
   topHeadlines = get_top_headlines
-  title = 'Home - Welcome to the News website'
+  # title = 'Home - Welcome to the News website'
   return render_template('index.html',title=title, sources = newsSource, topHeadlines=topHeadlines)
 
 @main.route('/article/<id>')
