@@ -1,0 +1,27 @@
+{% extends 'base.html'%} {% block content %}
+<body>
+  <h1>Searched articles</h1>
+  <div class="container">
+    <div class="row">
+      {% for article in articles %}
+      <div class="col-md-4">
+        <div class="card">
+          <img src="{{article.image}}" class="card-img-top img-thumbnail" />
+          <div class="card-body">
+            <h5 class="card-title">{{article.author}}</h5>
+            <p class="card-text">{{article.description}}</p>
+          </div>
+          <div class="card-body">
+            <a href="{{article.url}}" class="card-link">Read more ...</a>
+          </div>
+          <div class="card-footer text-muted">
+            <h4>{{article.author}}</h4>
+            <h6>{{article.publishedDate}}</h6>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+{% endblock %}
