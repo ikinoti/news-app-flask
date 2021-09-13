@@ -13,7 +13,11 @@ def index():
   newsSource = get_news_source()
   topHeadlines = get_top_headlines()
   # title = 'Home - Welcome to the News website'
-  return render_template('index.html', sources = newsSource, topHeadlines=topHeadlines)
+  search_article = request.args.get('search_query')
+  if search_article:
+    return redirect(url_for('.search', article_name = search_article))
+  else:
+    return render_template('index.html', sources = newsSource, topHeadlines=topHeadlines)
 
 @main.route('/article/<id>')
 def news_article(id):
