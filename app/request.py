@@ -2,7 +2,7 @@ import urllib.request, json
 from .models import News_Source, Top_Headlines, Article, News_Category
 
 # getting api key
-api_key = None
+api_key = 'd56bc62864054634bf08615054f1cdb7'
 
 # getting sources base url
 source_base_url = None
