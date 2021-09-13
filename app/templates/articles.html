@@ -3,25 +3,26 @@
 <body>
   <h1>{{id}} News</h1>
   <div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      {% for article on articles %}
-      <div class="col">
+    <div class="row">
+      {{% for article in articles %}
+      <div class="col-md-4">
         <div class="card">
-          <img src="{{article.image}}" class="card-img-top" />
+          <img src="{{article.image}}" class="card-img-top img-thumbnail" />
           <div class="card-body">
             <h5 class="card-title">{{article.author}}</h5>
-            <p class="card-text">{{article.description}}}}</p>
-            <a href="{{article.url}}">READ MORE...</a>
+            <p class="card-text">{{article.description}}</p>
           </div>
-          <div class="card-footer">
-            <small class="text-muted"
-              >Published on: {{article.publishedDate}}</small
-            >
+          <div class="card-body">
+            <a href="{{article.url}}" class="card-link">Read more ...</a>
+          </div>
+          <div class="card-footer text-muted">
+            <h4>{{article.author}}</h4>
+            <h6>{{article.publishedDate}}</h6>
           </div>
         </div>
       </div>
       {% endfor %}
     </div>
   </div>
-  {% endblock %}
 </body>
+{% endblock %}
