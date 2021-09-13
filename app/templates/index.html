@@ -4,10 +4,12 @@
 
 <body>
   <div class="container-fluid">
-    <div class="row">
+    <div class="row overflow-x-hidden">
       <div class="col-md-3">
         <div class="card">
-          <div class="card-header">Browse News Sources</div>
+          <div class="card-header">
+            <h2>Browse News Sources</h2>
+          </div>
           <div class="card-body">
             <ul class="list-group list-group-flush">
               {% for source in sources %}
@@ -22,20 +24,25 @@
 
       <div class="col-md-9">
         <h1 class="text-center">TOP HEADLINES</h1>
-        <div class="container">
+        <div class="row">
           {% for headline in topHeadlines %}
-          <div class="card">
-            <img src="{{headline.image}}" class="card-img-top" />
-            <div class="card-body">
-              <h5 class="card-title">{{headline.title}}</h5>
-              <p class="card-text">{{headline.description}}</p>
-            </div>
-            <div class="card-body">
-              <a href="{{headline.url}}" class="card-link">Read more ...</a>
-            </div>
-            <div class="card-footer text-muted">
-              <h4>{{headline.author}}</h4>
-              <h6>{{headline.publishedDate}}</h6>
+          <div class="col-md-4">
+            <div class="card">
+              <img
+                src="{{headline.image}}"
+                class="card-img-top img-thumbnail"
+              />
+              <div class="card-body">
+                <h5 class="card-title">{{headline.title}}</h5>
+                <p class="card-text">{{headline.description}}</p>
+              </div>
+              <div class="card-body">
+                <a href="{{headline.url}}" class="card-link">Read more ...</a>
+              </div>
+              <div class="card-footer text-muted">
+                <h4>{{headline.author}}</h4>
+                <h6>{{headline.publishedDate}}</h6>
+              </div>
             </div>
           </div>
           {% endfor %}
