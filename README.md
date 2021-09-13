@@ -42,7 +42,7 @@ As a user I would like to:
 
 - In your terminal:
 
-        $ git clone https://github.com/emdeechege/NewsApi/
+        $ git clone https://github.com/ikinoti/NewsApi/
         $ cd NewsPI
 
 ## Running the Application
