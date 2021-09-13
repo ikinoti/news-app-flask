@@ -28,7 +28,7 @@ def get_news_source():
   '''
   Function that gets the json response to our url request
   '''
-  get_news_source_url = source_base_url.format(api_key)
+  get_news_source_url = 'https://newsapi.org/v2/sources?apiKey=d56bc62864054634bf08615054f1cdb7'
   with urllib.request.urlopen(get_news_source_url) as url:
     get_news_source_data = url.read()
     get_news_source_response = json.loads(get_news_source_data)
@@ -76,7 +76,7 @@ def get_top_headlines():
   function that gets the response to the category json
   '''
 
-  get_headlines_url = headlines_base_url.format(api_key)
+  get_headlines_url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=d56bc62864054634bf08615054f1cdb7'
   with urllib.request.urlopen(get_headlines_url) as url:
     get_headlines_data = url.read()
     get_headlines_response = json.loads(get_headlines_data)
@@ -112,7 +112,7 @@ def get_news_categories(category_name):
   '''
   function that gets the response to the category json
   '''
-  get_cat_url = categories_base_url.format(category_name, api_key)
+  get_cat_url = f'https://newsapi.org/v2/top-headlines?country=us&category={category_name}&apiKey=d56bc62864054634bf08615054f1cdb7'
   with urllib.request.urlopen(get_cat_url) as url:
     get_cat_data = url.read()
     get_cat_response = json.loads(get_cat_data)
@@ -126,7 +126,7 @@ def get_news_categories(category_name):
   return get_cat_results
 
 def search_article(article_name):
-  search_article_url = 'https://newsapi.org/v2/everything?q={}&apiKey={}'.format(article_name, api_key)
+  search_article_url = f'https://newsapi.org/v2/everything?q={article_name}&apiKey=d56bc62864054634bf08615054f1cdb7'.format(article_name, api_key)
   with urllib.request.urlopen(search_article_url) as url:
     search_article_data = url.read()
     search_article_response = json.loads(search_article_data)
