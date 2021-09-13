@@ -126,7 +126,7 @@ def get_news_categories(category_name):
   return get_cat_results
 
 def search_article(article_name):
-  search_article_url = 'https://newsapi.org/v2/everything?q={}&apiKey=d{}'.format(article_name, api_key)
+  search_article_url = 'https://newsapi.org/v2/everything?q={}&apiKey={}'.format(article_name, api_key)
   with urllib.request.urlopen(search_article_url) as url:
     search_article_data = url.read()
     search_article_response = json.loads(search_article_data)
