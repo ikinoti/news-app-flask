@@ -1,6 +1,6 @@
 from flask import render_template,request,redirect,url_for
 from . import main
-from ..request import get_news_source, get_top_headlines, news_article_source, get_news_categories
+from ..request import get_news_source, get_top_headlines, news_article_source, get_news_categories, search_article
 
 
 # Views
@@ -33,3 +33,14 @@ def cat(category_name):
   cat_name = category_name
 
   return render_template('category.html', title=title, category = category, cat_name = cat_name)
+
+@main.route('/search/<article_name>')
+def search(article_name):
+  '''
+  View function to display search results
+  '''
+  article_name_list = article_name.split(" ")
+  article_name_format = "+".join(article_name_list)
+  searched_articles = search_article(article_name_format)
+  title = f'search results for {article_name}'
+  return render_template('search.html', articles = searched_articles)
