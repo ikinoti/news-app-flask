@@ -2,23 +2,25 @@
 <body>
   <h1>{{cat_name}} News</h1>
   <div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div class="col">
-        {% for category in category %}
+    <div class="row">
+      {% for category in category %}
+      <div class="col-md-4">
         <div class="card">
-          <img src="{{category.image}}" class="card-img-top" />
+          <img src="{{category.image}}" class="card-img-top img-thumbnail" />
           <div class="card-body">
             <h5 class="card-title">{{category.author}}</h5>
             <p class="card-text">{{category.description}}</p>
           </div>
-          <div class="card-footer">
-            <small class="text-muted"
-              >Published on: {{category.publishedDate}}</small
-            >
+          <div class="card-body">
+            <a href="{{category.url}}" class="card-link">Read more ...</a>
+          </div>
+          <div class="card-footer text-muted">
+            <h4>{{category.author}}</h4>
+            <h6>{{category.publishedDate}}</h6>
           </div>
         </div>
-        {% endfor %}
       </div>
+      {% endfor %}
     </div>
   </div>
   {% endblock %}
